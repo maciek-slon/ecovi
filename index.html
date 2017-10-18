@@ -1,0 +1,34 @@
+---
+layout: default
+title: Home
+---
+
+<div class="posts">
+  {% assign labs = site.categories.metalab | sort: "lab"  %}
+  {% for post in labs %}
+  <article class="post" style="margin-bottom: 1em">
+    {% if post.ready %}
+    <h2 class="post-title">
+      <a href="{{site.baseurl}}{{post.url}}">L{{post.lab}}: {{ post.title }}</a>
+    </h2>
+    {% else %}
+    <h2 class="post-title" style="color: #9a9a9a">
+      L{{post.lab}}: {{ post.title }}
+    </h2>
+    {% endif %}
+
+    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
+    {% comment %}
+    <dl>
+    {% assign tasks = site.categories.lab | sort: "task"  %}
+    {% for task in tasks %}
+      {% if task.lab == post.lab %}
+        <dt><a href="{{ site.baseurl }}{{ task.url }}">L{{post.lab}}.{{task.task}}: {{ task.title }}</a></dt>
+        <dd>{{ task.brief }}</dd>  
+      {% endif %}
+    {% endfor %}
+    </dl>
+    {% endcomment %}
+  </article>
+  {% endfor %}
+</div>

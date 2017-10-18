@@ -1,0 +1,31 @@
+# Permalinks
+permalink:           /:year/:month/:day/:title/
+
+# Setup
+title:               PERM
+tagline:             Percepcja Maszyn
+url:                 "https://studia.elka.pw.edu.pl/file/17L/PERM.A/priv/lab/"
+baseurl:             "/file/17L/PERM.A/priv/lab"
+future:              true
+
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+# About/contact
+author:
+  name:              Maciej Stefańczyk
+  url:               
+  email:             M.Stefanczyk@elka.pw.edu.pl
+
+# Custom vars
+version:             2.0.0
+github:
+  repo:              https://github.com/poole/poole
+
+# Gems
+gems:
+  - jekyll-gist

@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1 class="post-title">L{{page.lab}}.{{page.task}}: {{ page.title }}</h1>
+  <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
+  {{ page.brief}}
+  
+  {{ content }}
+</article>
+
+{% assign tasks = site.categories.lab | sort: "task"  %}
+{% assign prev_task = page.task  | minus: 1 %}
+{% assign next_task = page.task  | plus: 1 %}
+
+<div class="pagination">
+{% assign tmp = 0 %}
+{% for task in tasks %}
+  {% if page.lab == task.lab and task.task == prev_task %}
+    <a class="pagination-item older" href="{{ site.baseurl }}{{ task.url }}">&laquo; L{{page.lab}}.{{task.task}}: {{ task.title }}</a>
+    {% assign tmp = 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if tmp != 1 %}
+<span class="pagination-item older">&nbsp;</span>
+{% endif %}
+
+{% assign tmp = 0 %}
+{% for task in tasks %}
+  {% if page.lab == task.lab and task.task == next_task %}
+    <a class="pagination-item newer" href="{{ site.baseurl }}{{ task.url }}">L{{page.lab}}.{{task.task}}: {{ task.title }} &raquo;</a>
+    {% assign tmp = 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if tmp != 1 %}
+<span class="pagination-item newer">&nbsp;</span>
+{% endif %}
+</div>
