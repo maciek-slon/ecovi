@@ -7,6 +7,9 @@ layout: default
   <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
   {{ page.brief}}
   
+  {% if page.single %}
+  {{ content }}
+  {% else %}
     <dl>
     {% assign tasks = site.categories.lab | sort: "task"  %}
     {% for task in tasks %}
@@ -16,5 +19,6 @@ layout: default
       {% endif %}
     {% endfor %}
     </dl>
+   {% endif %}
     
 </article>
